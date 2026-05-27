@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>圖片與音頻網站</title>
+    <style>
+        /* 基本網頁設定：黑色背景、隱藏卷軸 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; 
+        }
+
+        /* 點擊進入的覆蓋層 */
+        #start-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-family: sans-serif;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        /* 圖片設定 */
+        #main-image {
+            display: none; /* 預設隱藏，點擊後才會顯示 */
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain; 
+            pointer-events: none; /* 防止使用者對圖片按右鍵下載或拖曳 */
+        }
+    </style>
+</head>
+<body>
+
+    <img id="main-image" src="gay.jpg" alt="主要圖、">
+
+    <audio id="bg-audio" loop>
+        <source src="Ambasing full. Ft dreambull.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="start-overlay">
+        點擊畫面進入網站
+    </div>
+
+    <script>
+        const overlay = document.getElementById('start-overlay');
+        const audio = document.getElementById('bg-audio');
+        const image = document.getElementById('main-image');
+
+        // 當使用者點擊覆蓋層時觸發
+        overlay.addEventListener('click', function() {
+            // 1. 強制播放音樂
+            audio.play();
+            // 2. 隱藏點擊畫面
+            overlay.style.display = 'none';
+            // 3. 顯示主圖片
+            image.style.display = 'block';
+        });
+    </script>
+
+</body>
+</html>
